@@ -1,6 +1,4 @@
-@REM downoad nodejs
-@REM check if node is installed globally
-@REM if not download nodejs
+@echo off
 
 node -v >nul 2>&1
 set /a node=%errorlevel%
@@ -26,9 +24,10 @@ IF NOT EXIST node_modules (
     IF %node% neq 0 (
         dep\npm install
     ) ELSE (
-        npm install
+        npm install && goto :start
     )
 )
+:start
 echo Starting Image Messages
 IF %node% neq 0 (
         dep\node install
